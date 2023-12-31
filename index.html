@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpartaMovieSearch</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script>
+    $(document).read(
+      function movie () {
+        const options = {method: 'GET', headers: {accept: 'application/json'}};
+        fetch('https://api.themoviedb.org/3/authentication', options)
+          .then(response => response.json())
+          .then(response => console.log(response))
+          .catch(err => console.error(err));
+      }
+    )
+  </script>
+  <style>
+    body {
+      background-color: black;
+    }
+    .main {
+      background-color: black;
+      color: white;
+      background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
+      background-position: center;
+      background-size: cover;
+      height: 400px;
+    }
+    .searching {
+      width: 600px;
+    }
+    .movie-card > img {
+      width: 300px;
+      border-radius: 30px;
+    }
+    .movie-card {
+      border: solid 1px black;
+      margin: 10px;
+      padding: 20px;
+      width: 340px; 
+      box-shadow: 100px;
+      border-radius: 30px;
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="main">
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Sparta Movie Search</h1>
+          <p class="col-md-8 fs-4">최신 영화를 검색해보세요.</p>
+          <input class="searching" type="text" placeholder="영화 제목를 입력해주세요.">
+          <button type="submit" class="btn btn-outline-light">Search</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="movie-card" id="278" onclick="">
+      <img src="https://www.themoviedb.org/t/p/w440_and_h660_face/sWGdF6UvNqYusGrR8G6hsIQ50SX.jpg" alt="The Shawshank Redemption">
+      <h3 class="movie-title">The Shawshank Redemption</h3>
+      <p>Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.</p>
+      <h5>average: 8.708</h5>
+  </div>
+  </section>
+  
+</body>
+</html>

@@ -1,9 +1,11 @@
+// DOMContentLoaded 이벤트가 발생하면 searchMovie 함수 실행
 document.addEventListener('DOMContentLoaded', function() {
   searchMovie();
 });
 
+// 영화 검색 API를 호출하여 영화 목록을 가져오는 함수
 function searchMovie() {
-  const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
+  const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
   const options = {
     method: 'GET',
     headers: {
@@ -18,12 +20,9 @@ function searchMovie() {
       const movieList = document.getElementById('movieList');
       movieList.innerHTML = '';
       let moviesData = data['results'];
+
       moviesData.forEach(movie => {
-        let id = movie['id'];
-        let poster_path = movie['poster_path'];
-        let title = movie['title'];
-        let overview = movie['overview'];
-        let vote_average = movie['vote_average'];
+        let { id, poster_path, title, overview, vote_average } = movie;
 
         let temp_html = `
         <div class="movieselect" id="${id}">
@@ -43,11 +42,12 @@ function searchMovie() {
     });
 }
 
+// 영화 검색과 검색 결과를 표시하는 함수 설정
 function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   const movieSelectElements = document.querySelectorAll('.movieselect');
   
-  
+  // 검색 데이터 구성
   let searchData = Array.from(movieSelectElements).map(movieCard => {
     return {
       title: movieCard.querySelector('h3').innerText.toUpperCase(),
@@ -58,6 +58,7 @@ function setupSearch() {
   const searchBtn = document.getElementById('searchBtn');
   const movieList = document.getElementById('movieList');
 
+  // 검색 버튼 클릭 시 검색 기능 실행
   searchBtn.addEventListener('click', function() {
     const searchText = searchInput.value.toUpperCase();
     const filteredResults = searchData.filter(item =>
@@ -67,27 +68,18 @@ function setupSearch() {
     displayResults(filteredResults.map(item => item.card)); // 검색 결과 표시
   });
   
+  // 각 영화 카드를 클릭했을 때 ID를 알려주는 alert 이벤트 설정
   movieSelectElements.forEach(movieCard => {
     movieCard.addEventListener('click', function() {
       const movieId = movieCard.id;
       if (movieId) {
-        alert(`id: ${movieId}`);
+        alert(`ID: ${movieId}`);
       }
     });
   });
 }
 
-document.addEventListener('click', function(event) {
-  const clickedElement = event.target;
-
-  if (clickedElement.classList.contains('movieselect')) {
-    const movieId = clickedElement.id;
-    if (movieId) {
-      alert(`ID: ${movieId}`);
-    }
-  }
-});
-
+// 검색 결과를 화면에 표시하는 함수
 function displayResults(results) {
   const movieList = document.getElementById('movieList');
 
@@ -100,4 +92,3 @@ function displayResults(results) {
     movieList.innerHTML = '<p>검색 결과가 없습니다.</p>';
   }
 }
-

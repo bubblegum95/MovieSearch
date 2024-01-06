@@ -1,0 +1,72 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+* {
+  font-family: 'Gowun Dodum', sans-serif;
+}
+body {
+  background-color: black;
+}
+.main {
+  padding-top: 200px;
+  background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 200px;
+}
+.inner {
+  width: 800px;
+
+  color: white;  
+  font-size: 40px;
+}
+.inner>h1 {
+  margin: 30px;
+}
+.searchMovie {
+  width: 800px;
+  height: 300px;
+  margin: 10px auto 10px auto; 
+  font-size: 20px;
+  color: white;
+
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.searchMovie > input {
+  width: 600px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 1px solid white; 
+}
+.searchMovie > button {
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 15px;
+  border: 1px solid black;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+}
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+}
+.movieselect {
+  border: solid 1px black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px; 
+  border-radius: 30px;
+  background-color: white;
+}
+.movieselect > img {
+  width: 300px;
+  border-radius: 30px;
+}

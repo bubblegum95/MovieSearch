@@ -56,7 +56,6 @@ function setupSearch() {
   });
 
   const searchBtn = document.getElementById('searchBtn');
-  const movieList = document.getElementById('movieList');
 
   // 검색 버튼 클릭 시 검색 기능 실행
   searchBtn.addEventListener('click', function() {

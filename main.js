@@ -18,19 +18,17 @@ function searchMovie() {
     .then(response => response.json())
     .then(data => {
       const movieList = document.getElementById('movieList');
-      movieList.innerHTML = movies.map(movie => {
+      movieList.innerHTML = data.results.map(movie => {
         let { id, poster_path, title, overview, vote_average } = movie;
-        let temp_html = `
-        <div class="movieselect" id="${id}">
-          <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="">
-          <h3>${title}</h3>
-          <p>${overview}</p>
-          <h5>average: ${vote_average}</h5>
-        </div>
+        return `
+          <div class="movieselect" id="${id}">
+            <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="">
+            <h3>${title}</h3>
+            <p>${overview}</p>
+            <h5>average: ${vote_average}</h5>
+          </div>
         `;
-        
-        //movieList.insertAdjacentHTML('beforeend', temp_html);
-      });
+      }).join('');
 
       setupSearch(); // 검색 데이터 수집과 이벤트 리스너 설정
     })
@@ -44,19 +42,17 @@ function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   const movieSelectElements = document.querySelectorAll('.movieselect');
   
-  // 검색 데이터 구성
-  let searchData = Array.from(movieSelectElements).map(movieCard => {
-    return {
-      title: movieCard.querySelector('h3').innerText.toUpperCase(),
-      card: movieCard
-    };
-  });
-
-  const searchBtn = document.getElementById('searchBtn');
-
   // 검색 버튼 클릭 시 검색 기능 실행
+  const searchBtn = document.getElementById('searchBtn');
   searchBtn.addEventListener('click', function() {
     const searchText = searchInput.value.toUpperCase();
+    const searchData = Array.from(movieSelectElements).map(movieCard => {
+      return {
+        title: movieCard.querySelector('h3').innerText.toUpperCase(),
+        card: movieCard
+      };
+    });
+
     const filteredResults = searchData.filter(item =>
       item.title.includes(searchText)
     );

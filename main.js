@@ -18,12 +18,8 @@ function searchMovie() {
     .then(response => response.json())
     .then(data => {
       const movieList = document.getElementById('movieList');
-      movieList.innerHTML = '';
-      let moviesData = data['results'];
-
-      moviesData.forEach(movie => {
+      movieList.innerHTML = movies.map(movie => {
         let { id, poster_path, title, overview, vote_average } = movie;
-
         let temp_html = `
         <div class="movieselect" id="${id}">
           <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="">
@@ -32,7 +28,8 @@ function searchMovie() {
           <h5>average: ${vote_average}</h5>
         </div>
         `;
-        movieList.insertAdjacentHTML('beforeend', temp_html);
+        
+        //movieList.insertAdjacentHTML('beforeend', temp_html);
       });
 
       setupSearch(); // 검색 데이터 수집과 이벤트 리스너 설정
